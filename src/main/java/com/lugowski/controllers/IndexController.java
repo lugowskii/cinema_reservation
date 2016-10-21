@@ -1,5 +1,8 @@
 package com.lugowski.controllers;
 
+import com.lugowski.dao.MovieRepository;
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -9,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class IndexController {
 
+    @Autowired
+    private MovieRepository movieRepository;
     @RequestMapping("/")
-    String index(){
+    String index(HttpServletRequest request){
+        request.setAttribute("showAllMovies", movieRepository.findAll());
         return "index";
     }
 }
