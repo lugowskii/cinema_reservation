@@ -37,7 +37,7 @@
     </div>
 
 
-    <div class="container" th:each="movie : ${movies}">
+    <div class="container" data-th-each="movie : ${movies}">
         <div class="container panel panel-default">
             <div class="row">
                 <div class="col-md-6">
@@ -45,7 +45,7 @@
                          th:src="@{/images/jak_zostac_kotem.jpg}" />
                 </div>
                 <div class="col-md-6">
-                    <p><b>Kraj:</b><p th:text="${movie.getCountry()}"></p></p>
+                    <p><b>Kraj:</b><p data-th-text="${movie.getCountry()}"></p></p>
                     <p><b>Rok:</b>${movie.getYear()}</p>
                     <p><b>Kategoria:</b>${movie.getCategory()}</p>
                     <p><b>Data wydania:</b></p>

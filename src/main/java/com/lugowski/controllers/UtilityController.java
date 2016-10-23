@@ -3,13 +3,11 @@ package com.lugowski.controllers;
 import com.lugowski.entities.Movie;
 import com.lugowski.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -22,10 +20,10 @@ public class UtilityController {
     @Autowired
     private MovieService movieService;
 
-    @GetMapping("/all_movies")
-    public String allMovies(){
+    @GetMapping("/movies")
+    public List<Movie> allMovies(){
         return
-                movieService.findAll().toString();
+                movieService.findAll();
     }
 
     @GetMapping("/save_movie")
