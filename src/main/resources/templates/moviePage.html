@@ -1,42 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head lang="pl" th:fragment="site-head">
-
-    <title>System rezerwacji biletów</title>
-    <meta http-equiv="content-type" content="text/html" charset="utf-8"/>
-
-    <link href="htpp://cdn.jsdelivr.net/webjars/bootstrap/3.3.6/css/bootstrap.min.css"
-          th:href="@{/webjars/bootstrap/3.3.6/css/bootstrap.min.css}"
-          rel="stylesheet" media="all" />
-    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.2.1/jquery.min.js"
-            th:src="@{/webjars/jquery/2.2.1/jquery.min.js}"></script>
-
-</head>
+<head lang="pl" th:replace="layout::site-header"/>
 <body>
-    <div class="container page-header">
-        <h1>
-            <a href="index.html" th:href="@{/}">System rezerwacji biletów online</a>
-        </h1>
-    </div>
+    <div th:replace="layout::main-link"/>
+    <div th:replace="layout::site-login"/>
 
-    <div class="container" style="padding:10px">
-        <form class="form-inline">
-            <div class="form-group">
-                <label for="username">Nazwa użytkownika:</label>
-                <input type="text" class="form-control" id="username"/>
-            </div>
-            <div class="form-group">
-                <label for="pwd">Hasło:</label>
-                <input type="password" class="form-control" id="pwd"/>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox"/> Zapamiętaj</label>
-            </div>
-            <button type="submit" class="btn btn-default">Potwierdź</button>
-        </form>
-    </div>
-
-    <!--/*--><!--@thymesVar id="movieById" type="com.lugowski.entities.Movie"--><!--*/-->
+    <!--/*--><!--@thymesVar id="movieById" type="com.lugowski.entities.Movie"--><!--*/-->\
+    <!--/*--><!--@thymesVar id="screeningsByMovie" type="List<com.lugowski.entities.Screening>"--><!--*/-->\
     <div class="container">
         <div class="container well row">
             <div class="col-md-4">
@@ -66,24 +36,14 @@
                 <p>
                     <b>Język: </b><span th:text="${movieById.getLanguage()}"></span>
                 </p>
-                <row>
-                    <div class="input-group date col-md-6">
-                        <h3>Podaj datę, zostanie wyświetlona lista seansów</h3>
-                        <input id="data_seansu" type="date" class="form-control"/>
-                    </div>
-                    <div class="col-md-2">
-                        <a href="moviePage.html"  class="btn btn-info btn-lg">
-                            Pokaż seanse w danym dniu
-                        </a>
-                    </div>
-                </row>
+                <div class="col-md-3" th:each="screening :${screeningsByMovie}" style="padding: 5px">
+                    <a href="moviePage.html"  class="btn btn-primary btn-md" th:text="${screening.getDateTimeInString()}" />
+                </div>
             </div>
         </div>
     </div>
 
-    <footer th:fragment="site-footer" class="container text-center">
-        <p class="text-muted credit">Piotr Ługowski 2016</p>
-    </footer>
+    <footer th:replace="layout::site-footer"/>
 
 </body>
 </html>

@@ -38,7 +38,7 @@ public class MovieService {
         movieRepository.save(movie);
     }
 
-    public void delete(Long id){
+    public void delete(Long id) {
         movieRepository.delete(id);
     }
 

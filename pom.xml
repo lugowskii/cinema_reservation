@@ -9,7 +9,6 @@
 	<packaging>jar</packaging>
 
 	<name>cinema_reservation</name>
-	<description></description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
