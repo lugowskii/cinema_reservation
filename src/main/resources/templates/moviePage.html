@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="pl">
+
+    <title>System rezerwacji biletów</title>
+    <meta http-equiv="content-type" content="text/html" charset="utf-8"/>
+
+    <link href="htpp://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+          th:href="@{webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen" />
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{webjars/jquery/2.1.4/jquery.min.js}"></script>
+</head>
+<body>
+    <div class="container page-header">
+        <h1>
+            <a href="index.html" th:href="${index}">System rezerwacji biletów online</a>
+        </h1>
+    </div>
+
+    <div class="container">
+        <form class="form-inline">
+            <div class="form-group">
+                <label for="email">Adres e-mail:</label>
+                <input type="email" class="form-control" id="email"/>
+            </div>
+            <div class="form-group">
+                <label for="pwd">Hasło:</label>
+                <input type="password" class="form-control" id="pwd"/>
+            </div>
+            <br/>
+            <div class="checkbox">
+                <label><input type="checkbox"/> Zapamiętaj</label>
+            </div>
+            <button type="submit" class="btn btn-default">Potwierdź</button>
+        </form>
+    </div>
+
+    <!--/*--><!--@thymesVar id="movieById" type="com.lugowski.entities.Movie"--><!--*/-->
+    <div class="container">
+        <div class="container well row">
+            <div class="col-md-4">
+                    <img class="img-responsive" src="../static/images/${movieById.getPictureName()}" alt="Jak zostać kotem"
+                         th:src="@{/images/}+${movieById.getPictureName()}" />
+            </div>
+            <h3 th:text="${movieById.getName()}"></h3>
+            <div class="col-md-8">
+                <p>
+                    <b>Kraj: </b><span th:text="${movieById.getCountry()}"></span>
+                </p>
+                <p>
+                    <b>Rok wydania: </b><span th:text="${movieById.getYear()}"></span>
+                </p>
+                <p>
+                    <b>Kategoria: </b><span th:text="${movieById.getCategory()}"></span>
+                </p>
+                <p>
+                    <b>Data wydania: </b><span th:text="${movieById.getReleaseDate()}"></span>
+                </p>
+                <p>
+                    <b>Reżyseria: </b><span th:text="${movieById.getDirecting()}"></span>
+                </p>
+                <p>
+                    <b>Aktorzy: </b><span th:text="${movieById.getActors()}"></span>
+                </p>
+                <p>
+                    <b>Język: </b><span th:text="${movieById.getLanguage()}"></span>
+                </p>
+                <button type = "button" class = "btn btn-info btn-lg">Rezerwuj bilet</button>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

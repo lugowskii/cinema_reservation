@@ -40,8 +40,8 @@
     <div class="container" th:each="movie : ${movies}">
         <div class="container well row">
                 <div class="col-md-4">
-                    <a href="index.html" th:href="${index}">
-                        <img class="img-responsive" src="../static/images/${movie.getPictureName()}" alt="Jak zostać kotem"
+                    <a href="moviePage.html"  th:href="@{'/moviePage/{paramsKey}/{paramsValue}'(paramsKey='id', paramsValue=${movie.getId()})}">
+                    <img class="img-responsive" src="../static/images/${movie.getPictureName()}" alt="Jak zostać kotem"
                          th:src="@{/images/}+${movie.getPictureName()}" />
                     </a>
                 </div>

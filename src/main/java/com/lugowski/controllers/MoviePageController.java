@@ -8,24 +8,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.List;
 
 /**
  * Created by Piotr Ługowski on 21.10.2016.
  */
 @Controller
-public class IndexController {
+public class MoviePageController {
 
     @Autowired
     private MovieService movieService;
 
-    @RequestMapping("/")
-    String index(Model model){
-        List<Movie> movies = movieService.findAll();
-        model.addAttribute("movies",movies);
-        return "index";
+    @RequestMapping("/moviePage/id/{id}")
+    String moviePage(Model model, @PathVariable Long id){
+        Movie movieById = movieService.getMovieById(id);
+        model.addAttribute("movieById", movieById);
+        return "moviePage";
     }
-
 
 
 }
