@@ -5,7 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Date;
+import java.time.LocalDate;
+
 
 /**
  * Created by Piotr Ługowski on 21.10.2016.
@@ -20,24 +21,24 @@ public class Movie {
     private String country;
     private int year;
     private String category;
-    private Date release_date;
+    private LocalDate releaseDate;
     private String directing;
     private String actors;
     private String language;
+    private String pictureName;
 
     protected Movie(){}
 
-    public Movie(String name, String country, int year,
-                 String category, Date release_date,
-                 String directing, String actors, String language) {
+    public Movie(String name, String country, int year, String category, LocalDate releaseDate, String directing, String actors, String language, String pictureName) {
         this.name = name;
         this.country = country;
         this.year = year;
         this.category = category;
-        this.release_date = release_date;
+        this.releaseDate = releaseDate;
         this.directing = directing;
         this.actors = actors;
         this.language = language;
+        this.pictureName = pictureName;
     }
 
     public Long getId() {
@@ -80,12 +81,12 @@ public class Movie {
         this.category = category;
     }
 
-    public Date getRelease_date() {
-        return release_date;
+    public LocalDate getReleaseDate() {
+        return releaseDate;
     }
 
-    public void setRelease_date(Date release_date) {
-        this.release_date = release_date;
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
     public String getDirecting() {
@@ -112,6 +113,14 @@ public class Movie {
         this.language = language;
     }
 
+    public String getPictureName() {
+        return pictureName;
+    }
+
+    public void setPictureName(String pictureName) {
+        this.pictureName = pictureName;
+    }
+
     @Override
     public String toString(){
         return String.format(
@@ -124,6 +133,6 @@ public class Movie {
                         "Aktorzy: %s<br/>" +
                         "Język: %s<br/>" + "<br/>",
                 name, country, year, category,
-                release_date, directing, actors, language);
+                releaseDate, directing, actors, language);
     }
 }

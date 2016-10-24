@@ -4,11 +4,9 @@ import com.lugowski.entities.Movie;
 import com.lugowski.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Created by Piotr Ługowski on 21.10.2016.
@@ -29,7 +27,7 @@ public class UtilityController {
     @GetMapping("/save_movie")
     public void saveMovie(@RequestParam String name){
         Movie movie = new Movie(name,"kraj", 2015, "a",
-                new Date(20160612),"Cameron","Lopez","szwedzki");
+                LocalDate.of(1999,12,11),"Cameron","Lopez","szwedzki", "jak_zostac_kotem.jpg");
         movieService.save(movie);
     }
 

@@ -12,14 +12,14 @@
             th:src="@{webjars/jquery/2.1.4/jquery.min.js}"></script>
 </head>
 <body>
-    <div class="container" role="navigation">
-        <div class="navbar navbar-inverse">
-            <h2>System rezerwacji biletów online</h2>
-        </div>
+    <div class="container page-header">
+        <h1>
+            <a href="index.html" th:href="${index}">System rezerwacji biletów online</a>
+        </h1>
     </div>
 
     <div class="container">
-        <form class="form-inline ">
+        <form class="form-inline">
             <div class="form-group">
                 <label for="email">Adres e-mail:</label>
                 <input type="email" class="form-control" id="email"/>
@@ -36,47 +36,45 @@
         </form>
     </div>
 
-
-    <div class="container" data-th-each="movie : ${movies}">
-        <div class="container panel panel-default">
-            <div class="row">
-                <div class="col-md-6">
-                    <img class="img-thumbnail responsive" src="../static/images/jak_zostac_kotem.jpg" alt="Jak zostać kotem"
-                         th:src="@{/images/jak_zostac_kotem.jpg}" />
+    <!--/*--><!--@thymesVar id="movies" type="List<com.lugowski.entities.Movie>"--><!--*/-->
+    <div class="container" th:each="movie : ${movies}">
+        <div class="container well row">
+                <div class="col-md-4">
+                    <a href="index.html" th:href="${index}">
+                        <img class="img-responsive" src="../static/images/${movie.getPictureName()}" alt="Jak zostać kotem"
+                         th:src="@{/images/}+${movie.getPictureName()}" />
+                    </a>
                 </div>
-                <div class="col-md-6">
-                    <p><b>Kraj:</b><p data-th-text="${movie.getCountry()}"></p></p>
-                    <p><b>Rok:</b>${movie.getYear()}</p>
-                    <p><b>Kategoria:</b>${movie.getCategory()}</p>
-                    <p><b>Data wydania:</b></p>
-                    <p><b>Reżyseria:</b>Barry Sonnenfeld</p>
-                    <p><b>Aktorzy:</b>Kevin Spacey, Jennifer Garner, Robbie Amell, Cheryl Hines, Mark Consuelos, Malina Weissman, Christopher Walken</p>
-                    <p><b>Język:</b>2D, Dubbing PL</p>
+                <h3 th:text="${movie.getName()}"></h3>
+                <div class="col-md-8">
+                    <p>
+                        <b>Kraj: </b><span th:text="${movie.getCountry()}"></span>
+                    </p>
+                    <p>
+                        <b>Rok wydania: </b><span th:text="${movie.getYear()}"></span>
+                    </p>
+                    <p>
+                        <b>Kategoria: </b><span th:text="${movie.getCategory()}"></span>
+                    </p>
+                    <p>
+                        <b>Data wydania: </b><span th:text="${movie.getReleaseDate()}"></span>
+                    </p>
+                    <p>
+                        <b>Reżyseria: </b><span th:text="${movie.getDirecting()}"></span>
+                    </p>
+                    <p>
+                        <b>Aktorzy: </b><span th:text="${movie.getActors()}"></span>
+                    </p>
+                    <p>
+                        <b>Język: </b><span th:text="${movie.getLanguage()}"></span>
+                    </p>
+                    <button type = "button" class = "btn btn-info btn-lg">Rezerwuj bilet</button>
                 </div>
-            </div>
         </div>
     </div>
 
 
 
-<!--<div class="container panel panel-default">
-        <div class="row">
-            <div class="col-md-6">
-                <img class="img-thumbnail" width="50%" height="50%" src="../static/images/jak_zostac_kotem.jpg" alt="Jak zostać kotem"
-                     th:src="@{/images/jak_zostac_kotem.jpg}" />
-            </div>
-            <div class="col-md-6">
-                <p><b>Kraj:</b>Chiny,Francja</p>
-                <p><b>Rok:</b>2016</p>
-                <p><b>Kategoria:</b>Familijny, Komedia</p>
-                <p><b>Data wydania:</b>19 sierpnia 2016 (Polska) 3 sierpnia 2016 (świat)</p>
-                <p><b>Reżyseria:</b>Barry Sonnenfeld</p>
-                <p><b>Aktorzy:</b>Kevin Spacey, Jennifer Garner, Robbie Amell, Cheryl Hines, Mark Consuelos, Malina Weissman, Christopher Walken</p>
-                <p><b>Język:</b>2D, Dubbing PL</p>
-            </div>
-        </div>
-
-    </div> -->
 
 </body>
 </html>

@@ -28,12 +28,10 @@ public class MovieService {
         this.movieRepository = movieRepository;
     }
 
-    @ModelAttribute("movies")
     public List<Movie> findAll(){
         List<Movie> movies = new ArrayList<>();
         for (Movie movie:movieRepository.findAll()){
             movies.add(movie);
-            System.out.println(movie);
         }
         return movies;
     }
