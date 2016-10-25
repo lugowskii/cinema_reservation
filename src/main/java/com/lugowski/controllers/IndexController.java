@@ -2,6 +2,7 @@ package com.lugowski.controllers;
 
 import com.lugowski.entities.Movie;
 import com.lugowski.service.MovieService;
+import com.lugowski.wrappers.ChoosenSeatsData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

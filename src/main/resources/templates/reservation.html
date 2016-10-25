@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="pl" th:replace="layout::site-header">
+</head>
+<body>
+<div th:replace="layout::main-link"/>
+<div th:replace="layout::site-login"/>
+
+<div class="container well text-center">
+    <label style="font-size: 20px">SCENA</label>
+    <!--/*--><!--@thymesVar id="allSeats" type="List<com.lugowski.entities.Seat>"--><!--*/-->
+    <form method="post" action="#" th:action="@{__${#httpServletRequest.requestURI}__/submit}" th:object="${choosenSeatsData}">
+        <ol >
+            <li class="row" th:each="r : ${#numbers.sequence(1, 8)}">
+                <ol class="seats">
+                    <label th:text="${r}"/>
+                    <li class="seat" th:each="currentSeat :${allSeats}" th:if="${currentSeat.getRow() ==r}">
+                        <input type="checkbox" th:id="${currentSeat.getId()}"
+                               name="seatsReserved" th:name="seatsReserved" th:value="${currentSeat.getId()}"/>
+                        <label th:for="${currentSeat.getId()}" th:text="${currentSeat.getNumber()}"></label>
+                    </li>
+                </ol>
+            </li>
+        </ol>
+        <div class="btm-btn-right">
+            <input type="submit" value="Potwierdź" name="_eventId_continue" />
+        </div>
+    </form>
+</div>
+
+<footer th:replace="layout::site-footer"/>
+
+</body>
+</html>

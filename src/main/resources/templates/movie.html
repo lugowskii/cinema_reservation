@@ -10,8 +10,8 @@
     <div class="container">
         <div class="container well row">
             <div class="col-md-4">
-                    <img class="img-responsive" src="../static/images/${movieById.getPictureName()}" alt="Jak zostać kotem"
-                         th:src="@{/images/}+${movieById.getPictureName()}" />
+                    <img class="img-responsive" src="../static/all/images/${movieById.getPictureName()}"
+                         alt="${movieById.getPictureName()}" th:src="@{/all/images/}+${movieById.getPictureName()}" />
             </div>
             <h3 th:text="${movieById.getName()}"></h3>
             <div class="col-md-8">
@@ -37,7 +37,7 @@
                     <b>Język: </b><span th:text="${movieById.getLanguage()}"></span>
                 </p>
                 <div class="col-md-3" th:each="screening :${screeningsByMovie}" style="padding: 5px">
-                    <a href="moviePage.html"  class="btn btn-primary btn-md" th:text="${screening.getDateTimeInString()}" />
+                    <a href="/reservation.html" th:href="@{/reservation/__${screening.getId()}__}" class="btn btn-primary btn-md" th:text="${screening.getDateTimeInString()}" />
                 </div>
             </div>
         </div>

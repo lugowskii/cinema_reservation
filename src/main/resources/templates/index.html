@@ -10,9 +10,9 @@
     <div class="container" th:each="movie : ${movies}">
         <div class="container well row">
                 <div class="col-md-4">
-                    <a href="moviePage.html"  th:href="@{'/moviePage/{paramsKey}/{paramsValue}'(paramsKey='id', paramsValue=${movie.getId()})}">
-                    <img class="img-responsive" src="../static/images/${movie.getPictureName()}" alt="Jak zostać kotem"
-                         th:src="@{/images/}+${movie.getPictureName()}" />
+                    <a href="movie.html" th:href="@{'/movie/{paramsKey}/{paramsValue}'(paramsKey='id', paramsValue=${movie.getId()})}">
+                        <img class="img-responsive" src="../static/all/images/${movie.getPictureName()}"
+                             alt="${movie.getPictureName()}" th:src="@{/all/images/}+${movie.getPictureName()}" />
                     </a>
                 </div>
                 <h3 th:text="${movie.getName()}"></h3>
@@ -38,7 +38,7 @@
                     <p>
                         <b>Język: </b><span th:text="${movie.getLanguage()}"></span>
                     </p>
-                        <a href="moviePage.html"  th:href="@{'/moviePage/{paramsKey}/{paramsValue}'
+                        <a href="movie.html" th:href="@{'/movie/{paramsKey}/{paramsValue}'
                                 (paramsKey='id', paramsValue=${movie.getId()})}" class="btn btn-info btn-lg">
                             Rezerwuj bilet
                         </a>

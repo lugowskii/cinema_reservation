@@ -2,8 +2,11 @@ package com.lugowski.controllers;
 
 import com.lugowski.entities.Movie;
 import com.lugowski.entities.Screening;
+import com.lugowski.entities.Reservation;
 import com.lugowski.service.MovieService;
 import com.lugowski.service.ScreeningService;
+import com.lugowski.service.ReservationService;
+import com.lugowski.service.SeatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +24,10 @@ public class UtilityController {
     private MovieService movieService;
     @Autowired
     private ScreeningService screeningService;
+    @Autowired
+    private ReservationService reservationService;
+    @Autowired
+    private SeatService seatService;
 
     @RequestMapping("/movies")
     public List<Movie> allMovies(){
@@ -49,5 +56,13 @@ public class UtilityController {
     public List<Screening> screeningsByMovieId(){
         return screeningService.findByMovieId(new Long(1));
     }
+
+    @RequestMapping("/reserve_seat")
+    public void reserveSeat(@RequestParam Long screeningId,
+                             @RequestParam Long seatId) {
+        Reservation reservation = new Reservation(screeningId, seatId);
+        reservationService.save(reservation);
+    }
+
 
 }

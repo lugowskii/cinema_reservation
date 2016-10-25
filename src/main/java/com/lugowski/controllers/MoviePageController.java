@@ -4,11 +4,11 @@ import com.lugowski.entities.Movie;
 import com.lugowski.entities.Screening;
 import com.lugowski.service.MovieService;
 import com.lugowski.service.ScreeningService;
+import com.lugowski.service.SeatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,14 +23,17 @@ public class MoviePageController {
     private MovieService movieService;
     @Autowired
     private ScreeningService screeningService;
+    @Autowired
+    private SeatService seatService;
 
-    @RequestMapping("/moviePage/id/{id}")
+
+    @RequestMapping("/movie/id/{id}")
     String moviePage(Model model, @PathVariable Long id){
-        Movie movieById = movieService.getMovieById(id);
+        Movie movieById = movieService.findMovieById(id);
         model.addAttribute("movieById", movieById);
         List<Screening> screeningsByMovie = screeningService.findByMovieId(id);
         model.addAttribute("screeningsByMovie", screeningsByMovie);
-        return "moviePage";
+        return "movie";
     }
 
 

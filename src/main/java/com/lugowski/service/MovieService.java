@@ -30,7 +30,7 @@ public class MovieService {
         return movies;
     }
 
-    public Movie getMovieById(Long id){
+    public Movie findMovieById(Long id){
         return movieRepository.findOne(id);
     }
 

@@ -31,22 +31,7 @@ public class ScreeningService {
     }
 
     public List<Screening> findByMovieId(Long id){
-        return screeningRepository.findByMovieId(id);
+        return screeningRepository.findByMovieIdOrderByDateTimeAsc(id);
     }
-
-    public Screening getScreeningById(Long id){
-        return screeningRepository.findOne(id);
-    }
-
-    public void save(Screening screening){
-        screeningRepository.save(screening);
-    }
-
-    public void delete(Long id){
-        screeningRepository.delete(id);
-    }
-
-
-
 
 }
