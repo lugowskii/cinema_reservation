@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="pl" th:replace="layout::site-header"/>
 <body>
+<div th:replace="layout::main-link"/>
+
+<div th:replace="layout::site-login"/>
+
+<!--/*--><!--@thymesVar id="movies" type="List<com.lugowski.entities.Movie>"--><!--*/-->
+<div class="container jumbotron text-center">
+    <p>Rezerwacja zakończona niepowodzeniem! Miejsca są niedostępne</p>
+</div>
+
+<footer th:replace="layout::site-footer"/>
 
 </body>
 </html>

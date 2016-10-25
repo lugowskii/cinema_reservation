@@ -26,8 +26,6 @@ public class UtilityController {
     private ScreeningService screeningService;
     @Autowired
     private ReservationService reservationService;
-    @Autowired
-    private SeatService seatService;
 
     @RequestMapping("/movies")
     public List<Movie> allMovies(){

@@ -8,7 +8,7 @@ import java.io.Serializable;
  * Created by Piotr Ługowski on 26.10.2016.
  */
 @Embeddable
-class SeatScreeningKey implements Serializable{
+public class SeatScreeningKey implements Serializable{
     @Column(name="screening_id")
     private Long screeningId;
     @Column(name="seat_id")

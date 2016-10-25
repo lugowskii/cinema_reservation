@@ -2,6 +2,7 @@ package com.lugowski.controllers;
 
 import com.lugowski.entities.Reservation;
 import com.lugowski.entities.Seat;
+import com.lugowski.entities.SeatScreeningKey;
 import com.lugowski.service.ReservationService;
 import com.lugowski.service.SeatService;
 import com.lugowski.wrappers.ChoosenSeatsData;
@@ -40,17 +41,22 @@ public class ReservationPageController {
     @PostMapping("/reservation/{screeningId}/submit")
     public String submitSeats(@PathVariable Long screeningId,
                               @ModelAttribute("choosenSeatsData") ChoosenSeatsData choosenSeatsData){
-        /*List<Long> nonAvailableSeats = new ArrayList<>();
-        for (Long id:choosenSeatsData.getSeatsReserved()){
-            if (reservationService.findReservationById(id) != null)
-                nonAvailableSeats.add(id);
-        }*/
-        ArrayList<Reservation> reservations = new ArrayList<>();
-        for (Long seatId:choosenSeatsData.getSeatsReserved()) {
-            reservations.add(new Reservation(screeningId,seatId));
+        List<Long> nonAvailableSeats = new ArrayList<>();
+        for (Long seatId:choosenSeatsData.getSeatsReserved()){
+            if (reservationService.findByKey(
+                    new SeatScreeningKey(screeningId,seatId)) != null){
+                nonAvailableSeats.add(seatId);
+            }
         }
-        //if (nonAvailableSeats.size() == 0)
-        reservationService.reserveSeatsForScreening(reservations);
-        return "layout";
+        if (nonAvailableSeats.size() != 0) return "reservationFailed";
+        else{
+            ArrayList<Reservation> reservations = new ArrayList<>();
+            for (Long seatId:choosenSeatsData.getSeatsReserved()) {
+                reservations.add(new Reservation(screeningId,seatId));
+            }
+            reservationService.reserveSeatsForScreening(reservations);
+            return "reservationSuccess";
+        }
+
     }
 }

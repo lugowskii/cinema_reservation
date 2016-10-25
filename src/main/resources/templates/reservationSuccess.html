@@ -7,10 +7,8 @@
 <div th:replace="layout::site-login"/>
 
 <!--/*--><!--@thymesVar id="movies" type="List<com.lugowski.entities.Movie>"--><!--*/-->
-<div class="container" th:each="movie : ${movies}">
-    <div class="container well row">
+<div class="container jumbotron text-center">
     <p>Rezerwacja zakończona sukcesem!</p>
-</div>
 </div>
 
 <footer th:replace="layout::site-footer"/>

@@ -2,6 +2,7 @@ package com.lugowski.service;
 
 import com.lugowski.dao.ReservationRepository;
 import com.lugowski.entities.Reservation;
+import com.lugowski.entities.SeatScreeningKey;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,8 +30,7 @@ public class ReservationService {
         reservationRepository.save(reservation);
     }
 
-    public Reservation findReservationById(Long id){
-        return reservationRepository.findOne(id);
+    public Reservation findByKey(SeatScreeningKey key){
+        return reservationRepository.findByKey(key);
     }
-
 }
