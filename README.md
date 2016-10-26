@@ -1,4 +1,3 @@
-# cinema_reservation
 #How to run application?<hr>
 1. Import project as a Maven Project.  
 2. An apllication works with MySQL database. If you don't have MySQLServer, you could download installer for Windows (https://dev.mysql.com/downloads/file/?id=466291) or install in preffered way. After installation completion, start MySQL service.  
