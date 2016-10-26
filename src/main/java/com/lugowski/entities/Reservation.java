@@ -10,14 +10,15 @@ import java.util.List;
 public class Reservation {
     @EmbeddedId
     private SeatScreeningKey key;
+    private Long customer_id;
 
     public Reservation() {
     }
 
-    public Reservation(Long screeningId, Long seatId) {
-        key=new SeatScreeningKey(screeningId,seatId);
+    public Reservation(SeatScreeningKey key, Long customer_id) {
+        this.key = key;
+        this.customer_id = customer_id;
     }
-
 
     public Long getScreeningId() {
         return key.getScreeningId();
@@ -33,5 +34,21 @@ public class Reservation {
 
     public void setSeatId(Long seatId) {
         this.key.setSeatId(seatId);
+    }
+
+    public Long getCustomer_id() {
+        return customer_id;
+    }
+
+    public void setCustomer_id(Long customer_id) {
+        this.customer_id = customer_id;
+    }
+
+    public SeatScreeningKey getKey() {
+        return key;
+    }
+
+    public void setKey(SeatScreeningKey key) {
+        this.key = key;
     }
 }

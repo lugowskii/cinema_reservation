@@ -24,13 +24,10 @@ public class UtilityController {
     private MovieService movieService;
     @Autowired
     private ScreeningService screeningService;
-    @Autowired
-    private ReservationService reservationService;
 
     @RequestMapping("/movies")
     public List<Movie> allMovies(){
-        return
-                movieService.findAll();
+        return movieService.findAll();
     }
 
     @RequestMapping("/save_movie")
@@ -38,11 +35,6 @@ public class UtilityController {
         Movie movie = new Movie(name,"kraj", 2015, "a",
                 LocalDate.of(1999,12,11),"Cameron","Lopez","szwedzki", "jak_zostac_kotem.jpg");
         movieService.save(movie);
-    }
-
-    @RequestMapping("/delete_movie")
-    public void deleteMovie(@RequestParam Long id){
-        movieService.delete(id);
     }
 
     @RequestMapping("/screenings")
@@ -54,13 +46,5 @@ public class UtilityController {
     public List<Screening> screeningsByMovieId(){
         return screeningService.findByMovieId(new Long(1));
     }
-
-    @RequestMapping("/reserve_seat")
-    public void reserveSeat(@RequestParam Long screeningId,
-                             @RequestParam Long seatId) {
-        Reservation reservation = new Reservation(screeningId, seatId);
-        reservationService.save(reservation);
-    }
-
 
 }

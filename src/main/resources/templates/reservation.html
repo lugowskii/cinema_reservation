@@ -22,8 +22,27 @@
                 </ol>
             </li>
         </ol>
-        <div class="btm-btn-right">
-            <input type="submit" value="Potwierdź" name="_eventId_continue" />
+        <div class="row">
+            <div class="col-md-4 col-md-offset-5">
+                <div class="input-group">
+                    <input type="text" class="form-control" th:id="name" placeholder="Imię"
+                           name="name" th:name="name" th:value="${customer.getName()}"/><br/>
+                </div>
+                <div class="input-group">
+                    <input type="text" class="form-control" th:id="surname" placeholder="Nazwisko"
+                           name="surname" th:name="surname" th:value="${customer.getSurname()}"/><br/>
+                </div>
+                <div class="input-group">
+                    <input type="text" class="form-control" th:id="email" placeholder="Adres e-mail"
+                           name="email" th:name="email" th:value="${customer.getEmail()}"/><br/>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="row text-center">
+            <div class="btm-btn-right">
+                <input type="submit" value="Potwierdź rezerwację" class="btn btn-lg btn-info"/>
+            </div>
         </div>
     </form>
 </div>
