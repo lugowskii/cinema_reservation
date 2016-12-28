@@ -8,10 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Piotr Ługowski on 21.10.2016.
- */
-
 @Service
 @Transactional
 public class MovieService {
@@ -22,19 +18,17 @@ public class MovieService {
         this.movieRepository = movieRepository;
     }
 
-    public List<Movie> findAll(){
+    public List<Movie> findAll() {
         List<Movie> movies = new ArrayList<>();
-        for (Movie movie:movieRepository.findAll()){
-            movies.add(movie);
-        }
+        movieRepository.findAll().forEach(movies::add);
         return movies;
     }
 
-    public Movie findMovieById(Long id){
+    public Movie findMovieById(Long id) {
         return movieRepository.findOne(id);
     }
 
-    public void save(Movie movie){
+    public void save(Movie movie) {
         movieRepository.save(movie);
     }
 

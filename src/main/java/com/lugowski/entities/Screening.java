@@ -1,14 +1,13 @@
 package com.lugowski.entities;
 
-import javax.persistence.*;
-import java.time.LocalDate;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
 
-/**
- * Created by Piotr Ługowski on 24.10.2016.
- */
 
-@Entity(name="screening")
+@Entity(name = "screening")
 public class Screening {
 
     @Id
@@ -17,7 +16,8 @@ public class Screening {
     private LocalDateTime dateTime;
     private Long movieId;
 
-    protected Screening(){}
+    protected Screening() {
+    }
 
     public Screening(LocalDateTime dateTime, Long movieId) {
         this.dateTime = dateTime;
@@ -42,7 +42,7 @@ public class Screening {
         sb.append(" ");
         sb.append(dateTime.getHour());
         sb.append(":");
-        if (dateTime.getMinute()<10) sb.append("0");
+        if (dateTime.getMinute() < 10) sb.append("0");
         sb.append(dateTime.getMinute());
         return sb.toString();
     }

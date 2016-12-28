@@ -7,11 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.OptionalInt;
 
-/**
- * Created by Piotr Ługowski on 25.10.2016.
- */
 @Service
 @Transactional
 public class SeatService {
@@ -22,11 +18,9 @@ public class SeatService {
         this.seatRepository = seatRepository;
     }
 
-    public List<Seat> findAllSeats(){
-        List<Seat> allSeats =new ArrayList<>();
-        for (Seat seat:seatRepository.findAll()){
-            allSeats.add(seat);
-        }
+    public List<Seat> findAllSeats() {
+        List<Seat> allSeats = new ArrayList<>();
+        seatRepository.findAll().forEach(allSeats::add);
         return allSeats;
     }
 

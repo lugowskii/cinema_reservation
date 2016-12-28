@@ -4,14 +4,11 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 
-/**
- * Created by Piotr Ługowski on 26.10.2016.
- */
 @Embeddable
-public class SeatScreeningKey implements Serializable{
-    @Column(name="screening_id")
+public class SeatScreeningKey implements Serializable {
+    @Column(name = "screening_id")
     private Long screeningId;
-    @Column(name="seat_id")
+    @Column(name = "seat_id")
     private Long seatId;
 
     public SeatScreeningKey(Long screeningId, Long seatId) {
@@ -22,19 +19,19 @@ public class SeatScreeningKey implements Serializable{
     public SeatScreeningKey() {
     }
 
-    public Long getScreeningId() {
+    Long getScreeningId() {
         return screeningId;
     }
 
-    public void setScreeningId(Long screeningId) {
+    void setScreeningId(Long screeningId) {
         this.screeningId = screeningId;
     }
 
-    public Long getSeatId() {
+    Long getSeatId() {
         return seatId;
     }
 
-    public void setSeatId(Long seatId) {
+    void setSeatId(Long seatId) {
         this.seatId = seatId;
     }
 }

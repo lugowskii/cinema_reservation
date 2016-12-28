@@ -2,9 +2,6 @@ package com.lugowski.wrappers;
 
 import java.util.ArrayList;
 
-/**
- * Created by Piotr Ługowski on 25.10.2016.
- */
 public class ChoosenSeatsData {
     private ArrayList<Long> seatsReserved;
 

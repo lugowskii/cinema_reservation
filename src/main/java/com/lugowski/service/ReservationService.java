@@ -8,10 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * Created by Piotr Ługowski on 25.10.2016.
- */
-
 @Service
 @Transactional
 public class ReservationService {
@@ -22,15 +18,15 @@ public class ReservationService {
         this.reservationRepository = reservationRepository;
     }
 
-    public void reserveSeatsForScreening(List<Reservation> seats){
+    public void reserveSeatsForScreening(List<Reservation> seats) {
         reservationRepository.save(seats);
     }
 
-    public void save(Reservation reservation){
+    public void save(Reservation reservation) {
         reservationRepository.save(reservation);
     }
 
-    public Reservation findByKey(SeatScreeningKey key){
+    public Reservation findByKey(SeatScreeningKey key) {
         return reservationRepository.findByKey(key);
     }
 }

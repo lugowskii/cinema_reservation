@@ -5,10 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-/**
- * Created by Piotr Ługowski on 25.10.2016.
- */
-@Entity(name="seat")
+@Entity(name = "seat")
 public class Seat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +13,8 @@ public class Seat {
     private int row;
     private int number;
 
-    protected Seat(){}
+    protected Seat() {
+    }
 
     public Seat(int row, int number) {
         this.row = row;

@@ -8,10 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Piotr Ługowski on 24.10.2016.
- */
-
 @Service
 @Transactional
 public class ScreeningService {
@@ -22,15 +18,13 @@ public class ScreeningService {
         this.screeningRepository = screeningRepository;
     }
 
-    public List<Screening> findAll(){
+    public List<Screening> findAll() {
         List<Screening> screenings = new ArrayList<>();
-        for (Screening screening: screeningRepository.findAll() ){
-            screenings.add(screening);
-        }
+        screeningRepository.findAll().forEach(screenings::add);
         return screenings;
     }
 
-    public List<Screening> findByMovieId(Long id){
+    public List<Screening> findByMovieId(Long id) {
         return screeningRepository.findByMovieIdOrderByDateTimeAsc(id);
     }
 

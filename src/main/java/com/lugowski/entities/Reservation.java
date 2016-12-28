@@ -1,12 +1,9 @@
 package com.lugowski.entities;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
 
-/**
- * Created by Piotr Ługowski on 25.10.2016.
- */
-@Entity(name="reservation")
+@Entity(name = "reservation")
 public class Reservation {
     @EmbeddedId
     private SeatScreeningKey key;

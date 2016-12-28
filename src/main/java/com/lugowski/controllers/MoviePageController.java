@@ -8,14 +8,12 @@ import com.lugowski.service.SeatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 
-/**
- * Created by Piotr Ługowski on 21.10.2016.
- */
 @Controller
 public class MoviePageController {
 
@@ -28,7 +26,7 @@ public class MoviePageController {
 
 
     @RequestMapping("/movie/id/{id}")
-    String moviePage(Model model, @PathVariable Long id){
+    String moviePage(Model model, @PathVariable Long id) {
         Movie movieById = movieService.findMovieById(id);
         model.addAttribute("movieById", movieById);
         List<Screening> screeningsByMovie = screeningService.findByMovieId(id);

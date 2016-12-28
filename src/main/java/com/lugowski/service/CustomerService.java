@@ -5,12 +5,6 @@ import com.lugowski.entities.Customer;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
-/**
- * Created by Piotr Ługowski on 26.10.2016.
- */
-
 @Service
 @Transactional
 public class CustomerService {
@@ -21,13 +15,13 @@ public class CustomerService {
         this.customerRepository = customerRepository;
     }
 
-    public void save(Customer customer){
+    public void save(Customer customer) {
         customerRepository.save(customer);
     }
 
-    public Customer findIdByCustomer(Customer customer){
+    public Customer findIdByCustomer(Customer customer) {
         return customerRepository.
-                findByNameAndSurnameAndEmail(customer.getName(), customer.getSurname(),customer.getEmail())
+                findByNameAndSurnameAndEmail(customer.getName(), customer.getSurname(), customer.getEmail())
                 .stream().findFirst().orElse(null);
     }
 }

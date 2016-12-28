@@ -7,15 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDate;
 
-
-/**
- * Created by Piotr Ługowski on 21.10.2016.
- */
-@Entity(name="movie")
+@Entity(name = "movie")
 public class Movie {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String country;
@@ -27,7 +23,8 @@ public class Movie {
     private String language;
     private String pictureName;
 
-    protected Movie(){}
+    protected Movie() {
+    }
 
     public Movie(String name, String country, int year, String category, LocalDate releaseDate, String directing, String actors, String language, String pictureName) {
         this.name = name;
@@ -122,13 +119,13 @@ public class Movie {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return String.format(
-                        "Nazwa: %s<br/>"+
+                "Nazwa: %s<br/>" +
                         "Kraj: %s<br/>" +
                         "Rok: %d<br/>" +
                         "Kategoria: %s<br/>" +
-                        "Data wydania: %s<br/>"+
+                        "Data wydania: %s<br/>" +
                         "Reżyseria: %s<br/>" +
                         "Aktorzy: %s<br/>" +
                         "Język: %s<br/>" + "<br/>",

@@ -19,10 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Piotr Ługowski on 25.10.2016.
- */
-
 @Controller
 public class ReservationPageController {
 
@@ -34,7 +30,7 @@ public class ReservationPageController {
     private CustomerService customerService;
 
     @RequestMapping("/reservation/{screeningId}")
-    public String reservationPage(Model model, @PathVariable Long screeningId){
+    public String reservationPage(Model model, @PathVariable Long screeningId) {
         List<Seat> allSeats = seatService.findAllSeats();
         model.addAttribute("allSeats", allSeats);
         ChoosenSeatsData choosenSeatsData = new ChoosenSeatsData();
@@ -47,22 +43,22 @@ public class ReservationPageController {
     @PostMapping("/reservation/{screeningId}/submit")
     public String submitSeats(@PathVariable Long screeningId,
                               @ModelAttribute("choosenSeatsData") ChoosenSeatsData choosenSeatsData,
-                              @ModelAttribute("customer") Customer customer){
+                              @ModelAttribute("customer") Customer customer) {
         List<Long> nonAvailableSeats = new ArrayList<>();
-        for (Long seatId:choosenSeatsData.getSeatsReserved()){
+        for (Long seatId : choosenSeatsData.getSeatsReserved()) {
             if (reservationService.findByKey(
-                    new SeatScreeningKey(screeningId,seatId)) != null){
+                    new SeatScreeningKey(screeningId, seatId)) != null) {
                 nonAvailableSeats.add(seatId);
             }
         }
         if (nonAvailableSeats.size() != 0) return "reservationFailed";          //if we can add reservation
-        else{
+        else {
             Customer toAdd = new Customer(customer.getName(), customer.getSurname(), customer.getEmail());
             customerService.save(toAdd);
             Customer added = customerService.findIdByCustomer(toAdd);
             ArrayList<Reservation> reservations = new ArrayList<>();
-            for (Long seatId: choosenSeatsData.getSeatsReserved()) {
-                reservations.add(new Reservation(new SeatScreeningKey(screeningId,seatId), added.getId()));
+            for (Long seatId : choosenSeatsData.getSeatsReserved()) {
+                reservations.add(new Reservation(new SeatScreeningKey(screeningId, seatId), added.getId()));
             }
             reservationService.reserveSeatsForScreening(reservations);
             return "reservationSuccess";
