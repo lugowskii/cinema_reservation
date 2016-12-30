@@ -2,49 +2,48 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="pl" th:replace="layout::site-header"/>
 <body>
-    <div th:replace="layout::main-link"/>
+<div th:replace="layout::main-link"/>
 
-    <div th:replace="layout::site-login"/>
+<div th:replace="layout::site-login"/>
 
-    <!--/*--><!--@thymesVar id="movies" type="List<com.lugowski.entities.Movie>"--><!--*/-->
-    <div class="container" th:each="movie : ${movies}">
-        <div class="container well row">
-                <div class="col-md-4">
-                    <a href="movie.html" th:href="@{'/movie/{paramsKey}/{paramsValue}'(paramsKey='id', paramsValue=${movie.getId()})}">
-                        <img class="img-responsive" src="../static/all/images/${movie.getPictureName()}"
-                             alt="${movie.getPictureName()}" th:src="@{/all/images/}+${movie.getPictureName()}" />
-                    </a>
-                </div>
-                <h3 th:text="${movie.getName()}"></h3>
-                <div class="col-md-8">
-                    <p>
-                        <b>Kraj: </b><span th:text="${movie.getCountry()}"></span>
-                    </p>
-                    <p>
-                        <b>Rok wydania: </b><span th:text="${movie.getYear()}"></span>
-                    </p>
-                    <p>
-                        <b>Kategoria: </b><span th:text="${movie.getCategory()}"></span>
-                    </p>
-                    <p>
-                        <b>Data wydania: </b><span th:text="${movie.getReleaseDate()}"></span>
-                    </p>
-                    <p>
-                        <b>Reżyseria: </b><span th:text="${movie.getDirecting()}"></span>
-                    </p>
-                    <p>
-                        <b>Aktorzy: </b><span th:text="${movie.getActors()}"></span>
-                    </p>
-                    <p>
-                        <b>Język: </b><span th:text="${movie.getLanguage()}"></span>
-                    </p>
-                        <a href="movie.html" th:href="@{'/movie/{paramsKey}/{paramsValue}'
-                                (paramsKey='id', paramsValue=${movie.getId()})}" class="btn btn-info btn-lg">
-                            Rezerwuj bilet
-                        </a>
-                </div>
+<!--/*--><!--@thymesVar id="movies" type="List<com.lugowski.entities.Movie>"--><!--*/-->
+<div class="container" th:each="movie : ${movies}">
+    <div class="container well row">
+        <div class="col-md-4">
+            <a href="movie.html" th:href="@{/movie/__${movie.getId()}__}">
+                <img class="img-responsive" src="../static/all/images/${movie.getPictureName()}"
+                     alt="${movie.getPictureName()}" th:src="@{/all/images/}+${movie.getPictureName()}"/>
+            </a>
+        </div>
+        <h3 th:text="${movie.getName()}"></h3>
+        <div class="col-md-8">
+            <p>
+                <b>Kraj: </b><span th:text="${movie.getCountry()}"></span>
+            </p>
+            <p>
+                <b>Rok wydania: </b><span th:text="${movie.getYear()}"></span>
+            </p>
+            <p>
+                <b>Kategoria: </b><span th:text="${movie.getCategory()}"></span>
+            </p>
+            <p>
+                <b>Data wydania: </b><span th:text="${movie.getReleaseDate()}"></span>
+            </p>
+            <p>
+                <b>Reżyseria: </b><span th:text="${movie.getDirecting()}"></span>
+            </p>
+            <p>
+                <b>Aktorzy: </b><span th:text="${movie.getActors()}"></span>
+            </p>
+            <p>
+                <b>Język: </b><span th:text="${movie.getLanguage()}"></span>
+            </p>
+            <a href="movie.html" th:href="@{/movie/__${movie.getId()}__}" class="btn btn-info btn-lg">
+                Rezerwuj bilet
+            </a>
         </div>
     </div>
+</div>
 
 <footer th:replace="layout::site-footer"/>
 

@@ -5,6 +5,7 @@ import com.lugowski.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -18,9 +19,12 @@ public class IndexController {
 
     @RequestMapping("/")
     String index(Model model) {
-        List<Movie> movies = movieService.findAll();
-        model.addAttribute("movies", movies);
         return "index";
+    }
+
+    @ModelAttribute(value = "movies")
+    List<Movie> list() {
+        return movieService.findAll();
     }
 
 }

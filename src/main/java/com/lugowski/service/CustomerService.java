@@ -22,6 +22,8 @@ public class CustomerService {
     public Customer findIdByCustomer(Customer customer) {
         return customerRepository.
                 findByNameAndSurnameAndEmail(customer.getName(), customer.getSurname(), customer.getEmail())
-                .stream().findFirst().orElse(null);
+                .stream()
+                .findFirst()
+                .orElse(null);
     }
 }

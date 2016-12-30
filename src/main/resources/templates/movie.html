@@ -2,48 +2,49 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="pl" th:replace="layout::site-header"/>
 <body>
-    <div th:replace="layout::main-link"/>
-    <div th:replace="layout::site-login"/>
+<div th:replace="layout::main-link"/>
+<div th:replace="layout::site-login"/>
 
-    <!--/*--><!--@thymesVar id="movieById" type="com.lugowski.entities.Movie"--><!--*/-->\
-    <!--/*--><!--@thymesVar id="screeningsByMovie" type="List<com.lugowski.entities.Screening>"--><!--*/-->\
-    <div class="container">
-        <div class="container well row">
-            <div class="col-md-4">
-                    <img class="img-responsive" src="../static/all/images/${movieById.getPictureName()}"
-                         alt="${movieById.getPictureName()}" th:src="@{/all/images/}+${movieById.getPictureName()}" />
-            </div>
-            <h3 th:text="${movieById.getName()}"></h3>
-            <div class="col-md-8">
-                <p>
-                    <b>Kraj: </b><span th:text="${movieById.getCountry()}"></span>
-                </p>
-                <p>
-                    <b>Rok wydania: </b><span th:text="${movieById.getYear()}"></span>
-                </p>
-                <p>
-                    <b>Kategoria: </b><span th:text="${movieById.getCategory()}"></span>
-                </p>
-                <p>
-                    <b>Data wydania: </b><span th:text="${movieById.getReleaseDate()}"></span>
-                </p>
-                <p>
-                    <b>Reżyseria: </b><span th:text="${movieById.getDirecting()}"></span>
-                </p>
-                <p>
-                    <b>Aktorzy: </b><span th:text="${movieById.getActors()}"></span>
-                </p>
-                <p>
-                    <b>Język: </b><span th:text="${movieById.getLanguage()}"></span>
-                </p>
-                <div class="col-md-3" th:each="screening :${screeningsByMovie}" style="padding: 5px">
-                    <a href="/reservation.html" th:href="@{/reservation/__${screening.getId()}__}" class="btn btn-primary btn-md" th:text="${screening.getDateTimeInString()}" />
-                </div>
+<!--/*--><!--@thymesVar id="movieById" type="com.lugowski.entities.Movie"--><!--*/-->\
+<!--/*--><!--@thymesVar id="screeningsByMovie" type="List<com.lugowski.entities.Screening>"--><!--*/-->\
+<div class="container">
+    <div class="container well row">
+        <div class="col-md-4">
+            <img class="img-responsive" src="../static/all/images/${movieById.getPictureName()}"
+                 alt="${movieById.getPictureName()}" th:src="@{/all/images/}+${movieById.getPictureName()}"/>
+        </div>
+        <h3 th:text="${movieById.getName()}"></h3>
+        <div class="col-md-8">
+            <p>
+                <b>Kraj: </b><span th:text="${movieById.getCountry()}"></span>
+            </p>
+            <p>
+                <b>Rok wydania: </b><span th:text="${movieById.getYear()}"></span>
+            </p>
+            <p>
+                <b>Kategoria: </b><span th:text="${movieById.getCategory()}"></span>
+            </p>
+            <p>
+                <b>Data wydania: </b><span th:text="${movieById.getReleaseDate()}"></span>
+            </p>
+            <p>
+                <b>Reżyseria: </b><span th:text="${movieById.getDirecting()}"></span>
+            </p>
+            <p>
+                <b>Aktorzy: </b><span th:text="${movieById.getActors()}"></span>
+            </p>
+            <p>
+                <b>Język: </b><span th:text="${movieById.getLanguage()}"></span>
+            </p>
+            <div class="col-md-3" th:each="screening :${screeningsByMovie}" style="padding: 5px">
+                <a href="/reservation.html" th:href="@{/reservation/__${screening.getId()}__}"
+                   class="btn btn-primary btn-md" th:text="${screening.getDateTimeInString()}"/>
             </div>
         </div>
     </div>
+</div>
 
-    <footer th:replace="layout::site-footer"/>
+<footer th:replace="layout::site-footer"/>
 
 </body>
 </html>
