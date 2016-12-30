@@ -2,6 +2,7 @@ package com.lugowski.entities;
 
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +11,7 @@ import javax.persistence.Id;
 import java.time.LocalDate;
 
 @Data
+@NoArgsConstructor
 @Entity
 public class Movie {
 

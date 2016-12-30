@@ -26,4 +26,10 @@ public class CustomerService {
                 .findFirst()
                 .orElse(null);
     }
+
+    public Customer saveCustomer(Customer customer) {
+        Customer toAdd = new Customer(customer.getName(), customer.getSurname(), customer.getEmail());
+        save(toAdd);
+        return findIdByCustomer(toAdd);
+    }
 }

@@ -1,9 +1,7 @@
 package com.lugowski.controllers;
 
 import com.lugowski.entities.Customer;
-import com.lugowski.entities.Reservation;
 import com.lugowski.entities.Seat;
-import com.lugowski.entities.SeatScreeningKey;
 import com.lugowski.service.CustomerService;
 import com.lugowski.service.ReservationService;
 import com.lugowski.service.SeatService;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -44,26 +41,14 @@ public class ReservationPageController {
     public String submitSeats(@PathVariable Long screeningId,
                               @ModelAttribute("choosenSeatsData") ChoosenSeatsData choosenSeatsData,
                               @ModelAttribute("customer") Customer customer) {
-        List<Long> nonAvailableSeats = new ArrayList<>();
-        for (Long seatId : choosenSeatsData.getSeatsReserved()) {
-            if (reservationService.findByKey(
-                    new SeatScreeningKey(screeningId, seatId)) != null) {
-                nonAvailableSeats.add(seatId);
-            }
+        if (!reservationService.isReservationPossible(screeningId, choosenSeatsData)) {
+            return "reservationFailed";
         }
-        if (nonAvailableSeats.size() != 0) return "reservationFailed";          //if we can add reservation
         else {
-            Customer toAdd = new Customer(customer.getName(), customer.getSurname(), customer.getEmail());
-            customerService.save(toAdd);
-            Customer added = customerService.findIdByCustomer(toAdd);
-            ArrayList<Reservation> reservations = new ArrayList<>();
-            for (Long seatId : choosenSeatsData.getSeatsReserved()) {
-                reservations.add(new Reservation(new SeatScreeningKey(screeningId, seatId), added.getId()));
-            }
-            reservationService.reserveSeatsForScreening(reservations);
+            Customer added = customerService.saveCustomer(customer);
+            reservationService.reserveSeats(screeningId, choosenSeatsData, added.getId());
             return "reservationSuccess";
         }
-
     }
 
 }
