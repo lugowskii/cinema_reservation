@@ -13,10 +13,10 @@ import java.util.List;
 
 
 @Controller
-public class MoviePageController {
+class MoviePageController {
 
-    private MovieService movieService;
-    private ScreeningService screeningService;
+    private final MovieService movieService;
+    private final ScreeningService screeningService;
 
     public MoviePageController(MovieService movieService, ScreeningService screeningService) {
         this.movieService = movieService;

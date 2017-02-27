@@ -17,14 +17,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-public class ReservationPageController {
+class ReservationPageController {
+
+    private final SeatService seatService;
+    private final ReservationService reservationService;
+    private final CustomerService customerService;
 
     @Autowired
-    private SeatService seatService;
-    @Autowired
-    private ReservationService reservationService;
-    @Autowired
-    private CustomerService customerService;
+    public ReservationPageController(SeatService seatService, ReservationService reservationService, CustomerService customerService) {
+        this.seatService = seatService;
+        this.reservationService = reservationService;
+        this.customerService = customerService;
+    }
 
     @RequestMapping("/reservation/{screeningId}")
     public String reservationPage(Model model, @PathVariable Long screeningId) {

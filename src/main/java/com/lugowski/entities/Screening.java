@@ -28,7 +28,8 @@ public class Screening {
         sb.append(dateTime.getMonthValue()).append("-");
         sb.append(dateTime.getYear()).append(" ");
         sb.append(dateTime.getHour()).append(":");
-        if (dateTime.getMinute() < 10) sb.append("0");
+        if (dateTime.getMinute() < 10)
+            sb.append("0");
         sb.append(dateTime.getMinute());
         return sb.toString();
     }

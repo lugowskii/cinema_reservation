@@ -12,7 +12,7 @@ import java.util.List;
 @Transactional
 public class SeatService {
 
-    private SeatRepository seatRepository;
+    private final SeatRepository seatRepository;
 
     public SeatService(SeatRepository seatRepository) {
         this.seatRepository = seatRepository;

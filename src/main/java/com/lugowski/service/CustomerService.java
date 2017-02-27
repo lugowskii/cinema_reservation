@@ -15,11 +15,11 @@ public class CustomerService {
         this.customerRepository = customerRepository;
     }
 
-    public void save(Customer customer) {
+    private void save(Customer customer) {
         customerRepository.save(customer);
     }
 
-    public Customer findIdByCustomer(Customer customer) {
+    private Customer findIdByCustomer(Customer customer) {
         return customerRepository.
                 findByNameAndSurnameAndEmail(customer.getName(), customer.getSurname(), customer.getEmail())
                 .stream()

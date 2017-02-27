@@ -13,12 +13,16 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-public class UtilityController {
+class UtilityController {
+
+    private final MovieService movieService;
+    private final ScreeningService screeningService;
 
     @Autowired
-    private MovieService movieService;
-    @Autowired
-    private ScreeningService screeningService;
+    public UtilityController(MovieService movieService, ScreeningService screeningService) {
+        this.movieService = movieService;
+        this.screeningService = screeningService;
+    }
 
     @RequestMapping("/movies")
     public List<Movie> allMovies() {

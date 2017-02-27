@@ -11,9 +11,9 @@ import java.util.List;
 
 
 @Controller
-public class IndexController {
+class IndexController {
 
-    private MovieService movieService;
+    private final MovieService movieService;
 
     public IndexController(MovieService movieService) {
         this.movieService = movieService;
@@ -22,6 +22,11 @@ public class IndexController {
     @RequestMapping("/")
     String index(Model model) {
         return "index";
+    }
+
+    @RequestMapping("/login")
+    String loginPage(Model model) {
+        return "login";
     }
 
     @ModelAttribute(value = "movies")

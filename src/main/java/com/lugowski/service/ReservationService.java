@@ -21,7 +21,7 @@ public class ReservationService {
         this.reservationRepository = reservationRepository;
     }
 
-    public void reserveSeatsForScreening(List<Reservation> seats) {
+    private void reserveSeatsForScreening(List<Reservation> seats) {
         reservationRepository.save(seats);
     }
 
@@ -29,7 +29,7 @@ public class ReservationService {
         reservationRepository.save(reservation);
     }
 
-    public Reservation findByKey(SeatScreeningKey key) {
+    private Reservation findByKey(SeatScreeningKey key) {
         return reservationRepository.findByKey(key);
     }
 
@@ -40,7 +40,7 @@ public class ReservationService {
                 nonAvailableSeats.add(seatId);
             }
         }
-        return (nonAvailableSeats.size() == 0);
+        return nonAvailableSeats.isEmpty();
     }
 
     public void reserveSeats(@PathVariable Long screeningId, ChoosenSeatsData choosenSeatsData, Long customerId) {

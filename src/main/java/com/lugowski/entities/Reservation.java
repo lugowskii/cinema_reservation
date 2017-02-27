@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
@@ -14,6 +15,7 @@ import javax.persistence.Entity;
 public class Reservation {
     @EmbeddedId
     private SeatScreeningKey key;
-    private Long customer_id;
+    @Column(name = "customer_id")
+    private Long customerId;
 
 }

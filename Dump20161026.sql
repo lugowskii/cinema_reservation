@@ -82,13 +82,15 @@ DROP TABLE IF EXISTS `reservation`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `reservation` (
   `screening_id` int(11) NOT NULL,
-  `seat_id` int(11) NOT NULL,
-  `customer_id` int(11) NOT NULL,
+  `seat_id`      INT(11) NOT NULL,
+  `customerId`   INT(11) NOT NULL,
   PRIMARY KEY (`screening_id`,`seat_id`),
   KEY `screening_id_idx` (`screening_id`),
   KEY `seat_id_idx` (`seat_id`),
-  KEY `customer_id_idx` (`customer_id`),
-  CONSTRAINT `customer_id` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  KEY `customer_id_idx` (`customerId`),
+  CONSTRAINT `customerId` FOREIGN KEY (`customerId`) REFERENCES `customer` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
   CONSTRAINT `screening_id` FOREIGN KEY (`screening_id`) REFERENCES `screening` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `seat_id` FOREIGN KEY (`seat_id`) REFERENCES `seat` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
