@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head lang="pl" th:fragment="site-header">
 
     <title>System rezerwacji biletów</title>
@@ -10,6 +10,8 @@
           rel="stylesheet" media="all" />
     <link rel="stylesheet" type="text/css" href="../static/all/images/css/seats.css"
           th:href="@{/all/css/seats.css}" />
+    <link rel="stylesheet" type="text/css" href="../static/all/images/css/page.css"
+          th:href="@{/all/css/page.css}"/>
     <script src="http://cdn.jsdelivr.net/webjars/jquery/2.2.1/jquery.min.js"
             th:src="@{/webjars/jquery/2.2.1/jquery.min.js}"></script>
 </head>
@@ -19,27 +21,31 @@
         <h1>
             <a href="index.html" th:href="@{/}">System rezerwacji biletów online</a>
         </h1>
+        <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+            <button type="submit" class="btn btn-default" style="padding:5px"> Wyloguj</button>
+        </form>
     </div>
 
-    <!--<div class="container jumbotron" style="padding:10px" th:fragment="site-login">
-        <form class="form-inline col-md-10" >
+    <div class="container jumbotron" style="padding:10px" th:fragment="site-login">
+        <form class="form-inline col-md-10" action="/login" method="post" role="form">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
             <div class="form-group">
-                <label for="username">Nazwa użytkownika:</label>
-                <input type="text" class="form-control" id="username"/>
+                <label for="username">E-mail:</label>
+                <input type="text" class="form-control" id="username" name="email"/>
             </div>
             <div class="form-group">
                 <label for="pwd">Hasło:</label>
-                <input type="password" class="form-control" id="pwd"/>
+                <input type="password" class="form-control" id="pwd" name="password"/>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox"/> Zapamiętaj</label>
+                <label><input type="checkbox" name="remember-me"/> Zapamiętaj</label>
             </div>
             <button type="submit" class="btn btn-default" style="padding:5px">Potwierdź</button>
         </form>
-        <a href="register.html" th:href="${register}" class="btn btn-info col-md-2 text-right" style="padding:5px">
+        <a href="register.html" th:href="@{/register}" class="btn btn-info col-md-2 text-right" style="padding:5px">
             Rejestracja
         </a>
-    </div>-->
+    </div>
 
     <footer th:fragment="site-footer" class="container text-center">
         <p class="text-muted credit">Piotr Ługowski 2016</p>

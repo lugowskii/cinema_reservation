@@ -1,10 +1,11 @@
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head lang="pl" th:replace="layout::site-header"></head>
 <body>
 <div th:replace="layout::main-link"></div>
 
-<h2 style="text-align: center">Logowanie</h2>
-<form class="container jumbotron" style="text-align: center" role="form" action="/login" method="post">
+<!--/*--><!--@thymesVar id="form" type="com.lugowski.entities.UserCreateForm"--><!--*/-->\
+<form class="container jumbotron" style="text-align: center" role="form" action="/user/create" method="post"
+      th:object="${form}">
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
     <table align="center">
         <tr>
@@ -24,15 +25,15 @@
             </td>
         </tr>
         <tr>
-            <td style="text-align: center">
+            <td>
                 <div>
-                    <label for="remember-me">Pamiętaj mnie</label>
-                    <input type="checkbox" name="remember-me" id="remember-me"/>
+                    <label for="passwordRepeated">Powtórz hasło</label>
+                    <input type="password" name="passwordRepeated" id="passwordRepeated"/>
                 </div>
             </td>
         </tr>
     </table>
-    <button type="submit" class="btn btn-info btn-md">Potwierdź</button>
+    <button type="submit" class="btn btn-info btn-md">Potwierdź rejestrację</button>
 </form>
 </body>
 </html>

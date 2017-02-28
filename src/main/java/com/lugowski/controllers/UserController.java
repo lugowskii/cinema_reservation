@@ -17,7 +17,7 @@ import java.util.NoSuchElementException;
 @Controller
 public class UserController {
 
-    final static String USER_CREATE = "user_create";
+    private final static String REGISTER = "register";
     private final UserService userService;
     private final UserCreateFormValidator userCreateFormValidator;
 
@@ -40,22 +40,22 @@ public class UserController {
 
     @GetMapping("user/create")
     public ModelAndView getUserCreatePage() {
-        return new ModelAndView(USER_CREATE, "form", new UserCreateForm());
+        return new ModelAndView(REGISTER, "form", new UserCreateForm());
     }
 
     @PostMapping("user/create")
     public String handleUserCreateForm(@Valid @ModelAttribute("form") UserCreateForm form,
                                        BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return USER_CREATE;
+            return REGISTER;
         }
         try {
             userService.create(form);
         } catch (DataIntegrityViolationException e) {
             bindingResult.reject("email.exists", "Email already exists");
-            return USER_CREATE;
+            return REGISTER;
         }
-        return "redirect:/users";
+        return "redirect:/login";
     }
 
 
